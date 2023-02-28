@@ -1,4 +1,4 @@
-from math import sin, cos, acos, radians, degrees
+from math import sin, asin, acos, radians, degrees
 
 
 def law_of_cosines(side_1, side_2, side_3):
@@ -29,6 +29,21 @@ def law_of_sines_1_angle_3_sides(angle_1, side_1, side_2, side_3):
     # Law of Sines: sin a/A = sin b/B = sin c/C
     # Law of Sines: sin(angle_1)/side_1 = sin(angle_2)/side_2 = sin(angle_3)/side_3
 
+    print(f"angle_1: {angle_1} radians")
+    print(f"side_1: {side_1}")
+    print(f"side_2: {side_2}")
+    print(f"side_3: {side_3}")
+    print("////////////////////////////////")
+    angle_2 = asin(side_2/side_1 * sin(angle_1))
+
+    angle_2 = round(angle_2, 6)
+
+    angle_3 = radians(180) - (angle_1 + angle_2)
+    angle_3 = round(angle_3, 6)
+
+    angles_2_and_3 = [angle_2, angle_3]
+    print(angles_2_and_3)
+    return angles_2_and_3
 
 
 def triangle_calc(num_angles, num_sides, angle_1, angle_2, angle_3, side_1, side_2, side_3):
@@ -36,7 +51,12 @@ def triangle_calc(num_angles, num_sides, angle_1, angle_2, angle_3, side_1, side
     if num_angles == 0 and num_sides == 3:
         angle_1_radians = law_of_cosines(side_1, side_2, side_3)
 
-        law_of_sines_1_angle_3_sides(angle_1_radians, side_1, side_2, side_3)
+        angles_2_and_3_radians = law_of_sines_1_angle_3_sides(angle_1_radians, side_1, side_2, side_3)
+        all_angles = [angle_1_radians, angles_2_and_3_radians[0], angles_2_and_3_radians[1]]
+        all_angles_degrees = [degrees(angle_1_radians), degrees(angles_2_and_3_radians[0]),
+                              degrees(angles_2_and_3_radians[1])]
+        print(all_angles)
+        print(all_angles_degrees)
 
 
 triangle_calc(num_angles=0, num_sides=3, angle_1=None, angle_2=None, angle_3=None,
