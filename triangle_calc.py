@@ -90,7 +90,5 @@ def triangle_calc(num_angles, num_sides, angle_1, angle_2, angle_3, side_1, side
               f"side_3: {round(result[2], 6)} units")
 
 
-
-
 triangle_calc(num_angles=1, num_sides=2, angle_1=0.698132, angle_2=None, angle_3=None,
               side_1=30, side_2=40, side_3=None)
