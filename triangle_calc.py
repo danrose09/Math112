@@ -1,7 +1,17 @@
-from math import sin, asin, acos, radians, degrees, ceil
+from math import sin, cos, asin, acos, radians, degrees
 
 
-def law_of_cosines(side_1, side_2, side_3):
+def law_of_cosines_1_angle_2_sides(angle_1, side_2, side_3):
+
+    # Law of Cosines: c^2 = a^2 + b^2 - 2ab * cos(theta)
+    # Law of Cosines: side_1^2 = side_2^2 + side_3^2 - 2(side_2)(side_3) * cos(theta)
+    side_1_squared = side_2**2 + side_3**2 - 2*side_2*side_3*cos(angle_1)
+    side_1 = side_1_squared**0.5
+
+    return side_1
+
+
+def law_of_cosines_3_sides(side_1, side_2, side_3):
 
     # Law of Cosines: c^2 = a^2 + b^2 - 2ab * cos(theta)
     # Law of Cosines: side_1^2 = side_2^2 + side_3^2 - 2(side_2)(side_3) * cos(theta)
@@ -68,7 +78,7 @@ def law_of_sines_1_angle_2_sides(angle_1, side_1, side_2):
 def triangle_calc(num_angles, num_sides, angle_1, angle_2, angle_3, side_1, side_2, side_3):
 
     if num_angles == 0 and num_sides == 3:
-        angle_1_radians = law_of_cosines(side_1, side_2, side_3)
+        angle_1_radians = law_of_cosines_3_sides(side_1, side_2, side_3)
 
         angles_2_and_3_radians = law_of_sines_1_angle_3_sides(angle_1_radians, side_1, side_2, side_3)
 
@@ -83,12 +93,20 @@ def triangle_calc(num_angles, num_sides, angle_1, angle_2, angle_3, side_1, side
         print(all_angles_degrees)
 
     elif num_angles == 1 and num_sides == 2:
-        result = law_of_sines_1_angle_2_sides(angle_1, side_1, side_2)
 
-        print(f"angle_2: {round(result[0], 6)} radians, {degrees(result[0])} degrees \n"
-              f"angle_3: {round(result[1], 6)} radians, {degrees(result[1])} degrees \n"
-              f"side_3: {round(result[2], 6)} units")
+        sine_or_cosine = input("Do you want to use law of sines[S] or law of cosines[C]? ").upper()
+
+        if sine_or_cosine == "S":
+            result = law_of_sines_1_angle_2_sides(angle_1, side_1, side_2)
+
+            print(f"angle_2: {round(result[0], 6)} radians, {degrees(result[0])} degrees \n"
+                f"angle_3: {round(result[1], 6)} radians, {degrees(result[1])} degrees \n"
+                f"side_3: {round(result[2], 6)} units")
+        else:
+            side_1 = law_of_cosines_1_angle_2_sides(angle_1, side_2, side_3)
+
+            law_of_sines_1_angle_3_sides(angle_1, side_1, side_2, side_3)
 
 
-triangle_calc(num_angles=1, num_sides=2, angle_1=0.698132, angle_2=None, angle_3=None,
-              side_1=30, side_2=40, side_3=None)
+triangle_calc(num_angles=1, num_sides=2, angle_1=0.855211, angle_2=None, angle_3=None,
+              side_1=None, side_2=11, side_3=23)
