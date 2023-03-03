@@ -108,5 +108,5 @@ def triangle_calc(num_angles, num_sides, angle_1, angle_2, angle_3, side_1, side
             law_of_sines_1_angle_3_sides(angle_1, side_1, side_2, side_3)
 
 
-triangle_calc(num_angles=1, num_sides=2, angle_1=0.855211, angle_2=None, angle_3=None,
-              side_1=None, side_2=11, side_3=23)
+triangle_calc(num_angles=0, num_sides=3, angle_1=None, angle_2=None, angle_3=None,
+              side_1=90, side_2=100, side_3=75)
